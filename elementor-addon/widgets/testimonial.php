@@ -1,7 +1,15 @@
 <?php
 
+
 class Bisnu_Testimonial extends \Elementor\Widget_Base
 {
+    function bisnu_print($arr)
+    {
+        echo "<pre>";
+        echo print_r($arr);
+        echo "</pre>";
+    }
+
     public function get_name()
     {
         return 'Bisnu Testimonial';
@@ -76,6 +84,7 @@ class Bisnu_Testimonial extends \Elementor\Widget_Base
         $repeater->add_control('tsc_rating', [
             'label' => "Rating",
             'type' => \Elementor\Controls_Manager::NUMBER,
+            'max' => 5,
             'default' => 5,
         ]);
 
@@ -93,7 +102,18 @@ class Bisnu_Testimonial extends \Elementor\Widget_Base
 
     function render()
     {
-        return "<p>Bisnu Kundu</p>";
+        $items = $this->get_settings_for_display();
+        $html = '<div class="flex gap-5 text-center justify-content flex-wrap">';
+        foreach ($items['testimonial_item'] as $item) {
+            $html .= "<div class='border p-5 rounded'>";
+            $html .= "<div class='mx-auto w-44 mb-3'>" . wp_get_attachment_image($item['tsc_profile']['id'], 'medium') . "</div>";
+            $html .= "<p>" . $item['tsc_name'] . " </p>";
+            $html .= "<small>" . $item['tsc_description'] . "</small>";
+            $html .= "<p>" . str_repeat("<i class='fas fa-star'></i>", $item['tsc_rating']) . "</p>";
+            $html .= "</div>";
+        }
+        $html .= '</div>';
+        echo $html;
     }
 
 }
