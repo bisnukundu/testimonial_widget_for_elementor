@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 // checking elementor active or not
 function bisnu_js_enque()
 {
-    wp_enqueue_script('tailwindcss', 'https://cdn.tailwindcss.com');
+    wp_enqueue_script('tailwindcss', 'https://cdn.tailwindcss.com',[],1);
 }
 
 add_action('wp_enqueue_scripts', 'bisnu_js_enque');

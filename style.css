@@ -2,3 +2,9 @@
 Theme Name: Child-Theme-Bisnu
 Template: twentytwentyone
 */
+
+.testimonial_img img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}

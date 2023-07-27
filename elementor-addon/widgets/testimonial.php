@@ -48,11 +48,7 @@ class Bisnu_Testimonial extends \Elementor\Widget_Base
             'label' => "Image",
             'type' => \Elementor\Controls_Manager::MEDIA,
         ]);
-        $repeater->add_control('tsc_title', [
-            'label' => 'Title',
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => 'Testimonial'
-        ]);
+
         $repeater->add_control('tsc_name', [
             'label' => "Name",
             "default" => "Jone",
@@ -94,7 +90,7 @@ class Bisnu_Testimonial extends \Elementor\Widget_Base
                 'label' => esc_html__('Testimonial Item', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '{{{ tsc_title}}}',
+                'title_field' => '{{{ tsc_name}}}',
             ]
         );
         $this->end_controls_section();
@@ -106,7 +102,7 @@ class Bisnu_Testimonial extends \Elementor\Widget_Base
         $html = '<div class="flex gap-5 text-center justify-content flex-wrap">';
         foreach ($items['testimonial_item'] as $item) {
             $html .= "<div class='border p-5 rounded'>";
-            $html .= "<div class='mx-auto w-44 mb-3'>" . wp_get_attachment_image($item['tsc_profile']['id'], 'medium') . "</div>";
+            $html .= "<div class='mx-auto mb-3 rounded-full h-40 w-40 testimonial_img overflow-hidden'>" . wp_get_attachment_image($item['tsc_profile']['id'], '', '',['class'=>'rounded-full h-40 w-40']) . "</div>";
             $html .= "<p>" . $item['tsc_name'] . " </p>";
             $html .= "<small>" . $item['tsc_description'] . "</small>";
             $html .= "<p>" . str_repeat("<i class='fas fa-star'></i>", $item['tsc_rating']) . "</p>";
