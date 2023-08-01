@@ -6,10 +6,14 @@ if (!defined('ABSPATH')) {
 // checking elementor active or not
 function bisnu_js_enque()
 {
-    wp_enqueue_script('tailwindcss', 'https://cdn.tailwindcss.com',[],1);
+    wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', ['jquery'], false, true);
+    wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
+    wp_enqueue_style('slick-css-theme', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css');
+    wp_enqueue_script('tailwindcss', 'https://cdn.tailwindcss.com', [], 1);
 }
 
 add_action('wp_enqueue_scripts', 'bisnu_js_enque');
+
 
 function bisnu_init()
 {
